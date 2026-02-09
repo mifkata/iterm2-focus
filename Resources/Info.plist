@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string>com.mifkata.itermfocus</string>
+    <key>CFBundleName</key>
+    <string>itermfocus</string>
+    <key>CFBundleExecutable</key>
+    <string>itermfocus</string>
+    <key>CFBundleVersion</key>
+    <string>1.0</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>LSBackgroundOnly</key>
+    <true/>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>com.mifkata.itermfocus</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>itermfocus</string>
+            </array>
+        </dict>
+    </array>
+</dict>
+</plist>
