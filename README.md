@@ -70,33 +70,60 @@ This is registered automatically during installation via macOS Launch Services. 
 terminal-notifier \
   -title "Task Complete" \
   -message "Build finished" \
-  -open "itermfocus://?sessionId=${ITERM_SESSION_ID}"
+  -open "itermfocus://session?sessionId=${ITERM_SESSION_ID}"
 ```
 
 When clicked, the notification focuses the iTerm2 window, tab, and pane where the command was run.
 
-**Example — notify after a long build:**
+**Example — reusable notify wrapper script (`.claude/hooks/notifier.sh`):**
 
-```bash
-make build && terminal-notifier \
-  -title "Build Succeeded" \
-  -message "Ready to test" \
-  -open "itermfocus://?sessionId=${ITERM_SESSION_ID}"
+```sh
+#!/bin/sh
+REPO_ROOT="$(cd "$(git rev-parse --git-common-dir)/.." && pwd)"
+REPO_NAME="$(basename "$REPO_ROOT")"
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+
+TITLE="$REPO_NAME/$BRANCH"
+
+terminal-notifier \
+    -title "$TITLE" -message "$1" -group "$TITLE" -remove "$TITLE" \
+    -open "itermfocus://session?sessionId=$ITERM_SESSION_ID"
 ```
 
-**Example — shell function for reusable notifications:**
+This derives the notification title from the current repo and branch, and clicking the notification focuses the originating iTerm2 session.
 
-```bash
-notify() {
-  terminal-notifier \
-    -title "${1:-Done}" \
-    -message "${2:-Task finished}" \
-    -open "itermfocus://?sessionId=${ITERM_SESSION_ID}"
+**Example — In combination with Claude Code hooks (`.claude/settings.json`):**
+
+```json
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/notifier.sh \"Waiting for user…\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/notifier.sh \"Ready!\""
+          }
+        ]
+      }
+    ]
+  }
 }
-
-# Usage:
-long-running-command; notify "Finished" "long-running-command completed"
 ```
+
+With this setup, Claude Code sends a desktop notification whenever it needs approval or finishes a task. Clicking the notification jumps you straight back to the correct iTerm2 session.
 
 ## Development
 
