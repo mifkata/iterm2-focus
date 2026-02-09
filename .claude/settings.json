@@ -1,0 +1,42 @@
+{
+    "permissions": {
+        "allow": [
+            "Bash(make:*)",
+            "Bash(git:*)",
+            "Bash(node:*)",
+            "Bash(mix:*)",
+            "Bash(pnpm:*)",
+            "Bash(python:*)",
+            "Bash(pip:*)",
+            "Bash(gh:*)",
+            "Bash(gh repo view:*)",
+            "Bash(gh repo set-default:*)",
+            "Bash(gh api repos/* -X PATCH -f body=:*)",
+            "Bash(xargs:*)",
+            "Bash(sort:*)",
+            "Bash(zed:*)",
+            "Bash(grep:*)",
+            "Bash(bd:*)"
+        ],
+        "deny": [
+            "Bash(npm:*)",
+            "Bash(gh org:*)"
+        ],
+        "ask": [
+            "Bash(rm:*)",
+            "Bash(git reset:*)",
+            "Bash(git push -f:*)",
+            "Bash(git push --force:*)",
+            "Bash(git push * -f:*)",
+            "Bash(git push * --force:*)",
+            "Bash(gh auth:*)",
+            "Bash(gh pr reopen:*)",
+            "Bash(gh pr revert:*)",
+            "Bash(gh pr close:*)",
+            "Bash(gh pr lock:*)",
+            "Bash(gh pr unlock:*)",
+            "Bash(gh release:*)",
+            "Bash(gh repo:*)"
+        ]
+    }
+}
