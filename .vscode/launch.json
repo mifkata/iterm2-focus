@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:app-spec}",
+            "name": "Debug itermfocus",
+            "target": "itermfocus",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug itermfocus"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:app-spec}",
+            "name": "Release itermfocus",
+            "target": "itermfocus",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release itermfocus"
+        }
+    ]
+}
